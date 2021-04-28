@@ -3,9 +3,8 @@ package Models
 
 
 type SecurityManger struct {
-	gorm.Model
 	
-	User
+	User `json:"user"`
 }
 
 

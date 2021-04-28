@@ -17,8 +17,7 @@ func GetSecurityMangers(c *gin.Context) {
 
  if err != nil {
   c.AbortWithStatus(http.StatusNotFound)
- }
- else {
+ } else {
   c.JSON(http.StatusOK, securityManger)
  }
 
@@ -35,8 +34,7 @@ func CreateSecurityManger(c *gin.Context) {
  if err != nil {
   fmt.Println(err.Error())
   c.AbortWithStatus(http.StatusNotFound)
- } 
- else {
+ } else {
   c.JSON(http.StatusOK, securityManger)
  }
 

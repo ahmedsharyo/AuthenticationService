@@ -24,7 +24,7 @@ func CreateAdmin(admin *Admin) (err error) {
 
 
 //GetAdminByID ... Fetch only one Admin by Id
-func GetAdminByID(admin *admin, id string) (err error) {
+func GetAdminByID(admin *Admin, id string) (err error) {
  if err = Config.DB.Where("id = ?", id).First(admin).Error; err != nil {
   return err
  }
@@ -32,7 +32,7 @@ func GetAdminByID(admin *admin, id string) (err error) {
 }
 
 //UpdateAdmin ... Update Admin
-func UpdateAdmin(Admin *admin, id string) (err error) {
+func UpdateAdmin(admin *Admin, id string) (err error) {
  fmt.Println(admin)
  Config.DB.Save(admin)
  return nil

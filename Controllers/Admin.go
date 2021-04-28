@@ -16,8 +16,7 @@ func GetAdmins(c *gin.Context) {
 
  if err != nil {
   c.AbortWithStatus(http.StatusNotFound)
- }
- else {
+ }else {
   c.JSON(http.StatusOK, admin)
  }
 
@@ -34,8 +33,7 @@ func CreateAdmin(c *gin.Context) {
  if err != nil {
   fmt.Println(err.Error())
   c.AbortWithStatus(http.StatusNotFound)
- } 
- else {
+ } else {
   c.JSON(http.StatusOK, admin)
  }
 
@@ -64,22 +62,22 @@ func UpdateAdmin(c *gin.Context) {
  err := Models.GetAdminByID(&admin, id)
  
  if err != nil {
-  c.JSON(http.StatusNotFound, Admin)
+  c.JSON(http.StatusNotFound, admin)
  }
- c.BindJSON(&Admin)
- err = Models.UpdateAdmin(&Admin, id)
+ c.BindJSON(&admin)
+ err = Models.UpdateAdmin(&admin, id)
  if err != nil {
   c.AbortWithStatus(http.StatusNotFound)
  } else {
-  c.JSON(http.StatusOK, Admin)
+  c.JSON(http.StatusOK, admin)
  }
 }
 
 //DeleteAdmin ... Delete the Admin
 func DeleteAdmin(c *gin.Context) {
- var Admin Models.Admin
+ var admin Models.Admin
  id := c.Params.ByName("id")
- err := Models.DeleteAdmin(&Admin, id)
+ err := Models.DeleteAdmin(&admin, id)
  if err != nil {
   c.AbortWithStatus(http.StatusNotFound)
  } else {

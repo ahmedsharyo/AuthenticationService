@@ -10,11 +10,12 @@ const (
 )
 
 type Admin struct {
-	gorm.Model
 	
-	user User `json:"user"`
+	 
 	AuthorityLevel authorityLevel `json:"authorityLevel"`
+	User
 }
+
 
 
 func (b *Admin) TableName() string {

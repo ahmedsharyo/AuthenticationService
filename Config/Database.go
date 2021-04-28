@@ -23,7 +23,7 @@ func BuildDBConfig() *DBConfig {
   Port:     3306,
   User:     os.Getenv("User")	,
   Password: os.Getenv("Password"),
-  DBName:   "`AuthenticationService`",
+  DBName:   "AuthenticationService",
  }
  return &dbConfig
 }
