@@ -4,7 +4,7 @@ package Models
 
 type SecurityManger struct {
 	
-	User `json:"user"`
+	User 
 }
 
 
