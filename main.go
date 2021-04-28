@@ -1,8 +1,8 @@
 package main
 import (
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Config"
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Models"
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Routes"
+ "github.com/ahmedsharyo/AuthenticationService/Config"
+ "github.com/ahmedsharyo/AuthenticationService/Models"
+ "github.com/ahmedsharyo/AuthenticationService/Routes"
  "fmt"
 "github.com/jinzhu/gorm"
 )

@@ -1,7 +1,7 @@
 package Routes
 
 import (
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Controllers"
+ "github.com/ahmedsharyo/AuthenticationService/Controllers"
 "github.com/gin-gonic/gin"
 )
 //SetupRouter ... Configure routes

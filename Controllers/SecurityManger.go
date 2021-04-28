@@ -1,7 +1,7 @@
 package Controllers
 
 import (
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Models"
+ "github.com/ahmedsharyo/AuthenticationService/Models"
  "fmt"
  "net/http"
 "github.com/gin-gonic/gin"

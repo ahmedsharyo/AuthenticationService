@@ -1,7 +1,7 @@
 package Models
 
 import (
- "github.com/ahmedsharyo/SharyoPATv1/AuthenticationService/Config"
+ "github.com/ahmedsharyo/AuthenticationService/Config"
  "fmt"
 _ "github.com/go-sql-driver/mysql"
 )
