@@ -19,8 +19,6 @@ if err != nil {
 defer Config.DB.Close()
 
 Config.DB.AutoMigrate(&Models.User{})
-Config.DB.AutoMigrate(&Models.Admin{})
-Config.DB.AutoMigrate(&Models.SecurityManger{})
 
 
 r := Routes.SetupRouter()

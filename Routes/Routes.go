@@ -9,22 +9,13 @@ func SetupRouter() *gin.Engine {
 
  r := gin.Default()
 
- grp1 := r.Group("/admin-api")
+ grp1 := r.Group("/user-api")
  {
-  grp1.GET("admin", Controllers.GetAdmins)
-  grp1.POST("admin", Controllers.CreateAdmin)
-  grp1.GET("admin/:id", Controllers.GetAdminByID)
-  grp1.PUT("admin/:id", Controllers.UpdateAdmin)
-  grp1.DELETE("admin/:id", Controllers.DeleteAdmin)
- }
- 
- grp2 := r.Group("/securityManger-api")
- {
-  grp2.GET("securityManger", Controllers.GetSecurityMangers)
-  grp2.POST("securityManger", Controllers.CreateSecurityManger)
-  grp2.GET("securityManger/:id", Controllers.GetSecurityMangerByID)
-  grp2.PUT("securityManger/:id", Controllers.UpdateSecurityManger)
-  grp2.DELETE("securityManger/:id", Controllers.DeleteSecurityManger)
+  grp1.GET("user", Controllers.GetUsers)
+  grp1.POST("user", Controllers.CreateUser)
+  grp1.GET("user/:id", Controllers.GetUserByID)
+  grp1.PUT("user/:id", Controllers.UpdateUser)
+  grp1.DELETE("user/:id", Controllers.DeleteUser)
  }
 
  return r
