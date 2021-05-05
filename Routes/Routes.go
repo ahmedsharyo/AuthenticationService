@@ -1,22 +1,16 @@
 package Routes
 
 import (
- "github.com/ahmedsharyo/AuthenticationService/Controllers"
-"github.com/gin-gonic/gin"
+	"github.com/ahmedsharyo/AuthenticationService/Controllers"
+	"github.com/gofiber/fiber/v2"
 )
+
 //SetupRouter ... Configure routes
-func SetupRouter() *gin.Engine {
+func Setup(app *fiber.App) {
 
- r := gin.Default()
+	app.Post("/user-api/register", Controllers.Register)
+	app.Post("/user-api/login", Controllers.Login)
+	//app.Get("//user", controllers.User)
+	app.Post("/user-api/logout", Controllers.Logout)
 
- grp1 := r.Group("/user-api")
- {
-  grp1.GET("user", Controllers.GetUsers)
-  grp1.POST("user", Controllers.CreateUser)
-  grp1.GET("user/:id", Controllers.GetUserByID)
-  grp1.PUT("user/:id", Controllers.UpdateUser)
-  grp1.DELETE("user/:id", Controllers.DeleteUser)
- }
-
- return r
 }
