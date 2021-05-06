@@ -6,6 +6,7 @@ import (
 	"github.com/ahmedsharyo/AuthenticationService/Config"
 	"github.com/ahmedsharyo/AuthenticationService/Models"
 	"github.com/ahmedsharyo/AuthenticationService/Routes"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/jinzhu/gorm"
@@ -32,6 +33,7 @@ func main() {
 	}))
 
 	Routes.Setup(app)
+	//Tests.SetApp(app)
 
 	app.Listen(":8080")
 

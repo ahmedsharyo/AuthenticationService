@@ -1,6 +1,7 @@
 package Controllers
 
 import (
+	"os"
 	"strconv"
 	"time"
 
@@ -17,7 +18,7 @@ var toID = map[string]Models.AuthorityLevel{
 	"SecurityManger": Models.SecurityManger,
 }
 
-const SecretKey = "Sharyoecret#_753951789632147"
+var SecretKey = os.Getenv("SecretKey")
 
 func Register(c *fiber.Ctx) error {
 
