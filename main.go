@@ -1,40 +1,43 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 
-	"github.com/ahmedsharyo/AuthenticationService/Config"
-	"github.com/ahmedsharyo/AuthenticationService/Models"
-	"github.com/ahmedsharyo/AuthenticationService/Routes"
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/jinzhu/gorm"
+	"github.com/ahmedsharyo/AuthenticationService/controllers"
+	"github.com/ahmedsharyo/AuthenticationService/service"
+	"github.com/gin-gonic/gin"
 )
 
-var err error
+//var err error
 
 func main() {
 
-	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
+	// Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
 
-	if err != nil {
-		fmt.Println("Status:", err)
-	}
+	// if err != nil {
+	// 	fmt.Println("Status:", err)
+	// }
 
-	defer Config.DB.Close()
+	// defer Config.DB.Close()
 
-	Config.DB.AutoMigrate(&Models.User{})
+	// Config.DB.AutoMigrate(&Models.User{})
 
-	app := fiber.New()
+	var loginService service.LoginService = service.StaticLoginService()
+	var jwtService service.JWTService = service.JWTAuthService()
+	var loginController controllers.LoginController = controllers.LoginHandler(loginService, jwtService)
 
-	app.Use(cors.New(cors.Config{
-		AllowCredentials: true,
-	}))
+	server := gin.New()
 
-	Routes.Setup(app)
-	//Tests.SetApp(app)
-
-	app.Listen(":8080")
-
+	server.POST("/login", func(ctx *gin.Context) {
+		token := loginController.Login(ctx)
+		if token != "" {
+			ctx.JSON(http.StatusOK, gin.H{
+				"token": token,
+			})
+		} else {
+			ctx.JSON(http.StatusUnauthorized, nil)
+		}
+	})
+	port := "8080"
+	server.Run(":" + port)
 }

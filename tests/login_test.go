@@ -16,9 +16,9 @@ func TestAPI(t *testing.T) {
 	resp, err := client.R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(`{
-		"email": "ahmedsharyo@gmail.com",
-		"password": "12345678"
-	}`).Post("http://localhost:8080/user-api/login")
+		"email": "bikash.dulal@wesionary.team",
+		"password": "testing"
+	}`).Post("http://localhost:8080/login")
 
 	//fmt.Println("  Body       :\n", resp.StatusCode())
 	//fmt.Println("  Body       :\n", err)

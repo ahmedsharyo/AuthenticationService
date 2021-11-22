@@ -1,11 +1,11 @@
-package Controllers
+package controllers
 
 import (
 	"os"
 	"strconv"
 	"time"
 
-	"github.com/ahmedsharyo/AuthenticationService/Models"
+	Models "github.com/ahmedsharyo/AuthenticationService/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"

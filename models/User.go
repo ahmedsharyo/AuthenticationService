@@ -3,7 +3,7 @@ package Models
 import (
 	"fmt"
 
-	"github.com/ahmedsharyo/AuthenticationService/Config"
+	Config "github.com/ahmedsharyo/AuthenticationService/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 
