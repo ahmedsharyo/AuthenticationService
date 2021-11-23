@@ -1,4 +1,4 @@
-package Models
+package models
 
 // User Struct
 
@@ -15,8 +15,8 @@ type User struct {
 	Id             uint           `gorrm:"unique" json:"id"`
 	UserName       string         `json:"username"`
 	Email          string         `json:"email"`
-	Password       string         `json:"-"`
-	AuthorityLevel AuthorityLevel `json:"-"`
+	Password       string         `json:"password"`
+	AuthorityLevel AuthorityLevel `json:"authorityLevel"`
 }
 
 func (b *User) TableName() string {

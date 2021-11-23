@@ -1,4 +1,4 @@
-package Models
+package models
 
 import (
 	"fmt"
@@ -23,7 +23,7 @@ func CreateUser(user *User) (err error) {
 	return nil
 }
 
-//GetUserByID ... Fetch only one User by Id
+//GetUserByID ... Fetch only one User by email
 func GetUserByEmail(user *User, email string) (err error) {
 	if err = Config.DB.Where("email = ?", email).First(user).Error; err != nil {
 		return err

@@ -36,14 +36,26 @@ func main() {
 
 	server.POST("/login", func(ctx *gin.Context) {
 		token := loginController.Login(ctx)
+
 		if token != "" {
+
 			ctx.JSON(http.StatusOK, gin.H{
 				"token": token,
 			})
+
 		} else {
 			ctx.JSON(http.StatusUnauthorized, nil)
 		}
 	})
+	server.POST("/signup", func(ctx *gin.Context) {
+
+		response := controllers.SignUp(ctx)
+		ctx.JSON(http.StatusOK, gin.H{
+			"response": response,
+		})
+
+	})
+
 	port := "8080"
 	server.Run(":" + port)
 }

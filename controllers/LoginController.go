@@ -30,7 +30,7 @@ func (controller *loginController) Login(ctx *gin.Context) string {
 	var credential dto.LoginCredentials
 	err := ctx.ShouldBind(&credential)
 	if err != nil {
-		return "no data found"
+		return "no correct data found in the payload"
 	}
 	isUserAuthenticated := controller.loginService.LoginUser(credential.Email, credential.Password)
 	if isUserAuthenticated {

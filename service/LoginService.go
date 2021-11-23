@@ -1,5 +1,12 @@
 package service
 
+import (
+	"fmt"
+
+	Models "github.com/ahmedsharyo/AuthenticationService/models"
+	"golang.org/x/crypto/bcrypt"
+)
+
 type LoginService interface {
 	LoginUser(email string, password string) bool
 }
@@ -10,10 +17,20 @@ type loginInformation struct {
 
 func StaticLoginService() LoginService {
 	return &loginInformation{
-		email:    "bikash.dulal@wesionary.team",
-		password: "testing",
+		email:    "",
+		password: "",
 	}
 }
 func (info *loginInformation) LoginUser(email string, password string) bool {
-	return info.email == email && info.password == password
+
+	user := Models.User{}
+	if Models.GetUserByEmail(&user, email) != nil {
+		return false
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+		return false
+	}
+	fmt.Print("true")
+	return true
 }
