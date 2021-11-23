@@ -1,26 +1,32 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+
+	Config "github.com/ahmedsharyo/AuthenticationService/config"
+	Models "github.com/ahmedsharyo/AuthenticationService/models"
+
+	"github.com/jinzhu/gorm"
 
 	"github.com/ahmedsharyo/AuthenticationService/controllers"
 	"github.com/ahmedsharyo/AuthenticationService/service"
 	"github.com/gin-gonic/gin"
 )
 
-//var err error
+var err error
 
 func main() {
 
-	// Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
+	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
 
-	// if err != nil {
-	// 	fmt.Println("Status:", err)
-	// }
+	if err != nil {
+		fmt.Println("Status:", err)
+	}
 
-	// defer Config.DB.Close()
+	defer Config.DB.Close()
 
-	// Config.DB.AutoMigrate(&Models.User{})
+	Config.DB.AutoMigrate(&Models.User{})
 
 	var loginService service.LoginService = service.StaticLoginService()
 	var jwtService service.JWTService = service.JWTAuthService()

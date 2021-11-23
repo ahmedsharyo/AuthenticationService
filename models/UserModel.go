@@ -12,11 +12,11 @@ const (
 )
 
 type User struct {
-	Id             uint   `gorrm:"unique" json:"id"`
-	UserName       string `json:"username"`
-	Email          string `json:"email"`
-	Password       string `json:"-"`
-	AuthorityLevel `json:"-"`
+	Id             uint           `gorrm:"unique" json:"id"`
+	UserName       string         `json:"username"`
+	Email          string         `json:"email"`
+	Password       string         `json:"-"`
+	AuthorityLevel AuthorityLevel `json:"-"`
 }
 
 func (b *User) TableName() string {
