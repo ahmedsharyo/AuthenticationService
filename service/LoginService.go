@@ -7,21 +7,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type LoginService interface {
-	LoginUser(email string, password string) bool
-}
-type loginInformation struct {
-	email    string
-	password string
-}
-
-func StaticLoginService() LoginService {
-	return &loginInformation{
-		email:    "",
-		password: "",
-	}
-}
-func (info *loginInformation) LoginUser(email string, password string) bool {
+func LoginUser(email string, password string) bool {
 
 	user := Models.User{}
 	if Models.GetUserByEmail(&user, email) != nil {

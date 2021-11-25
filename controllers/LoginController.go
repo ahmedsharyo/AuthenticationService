@@ -1,40 +1,21 @@
 package controllers
 
 import (
-	"github.com/ahmedsharyo/AuthenticationService/dto"
-
+	"github.com/ahmedsharyo/AuthenticationService/models"
 	"github.com/ahmedsharyo/AuthenticationService/service"
 
 	"github.com/gin-gonic/gin"
 )
 
-//login contorller interface
-type LoginController interface {
-	Login(ctx *gin.Context) string
-}
-
-type loginController struct {
-	loginService service.LoginService
-	jWtService   service.JWTService
-}
-
-func LoginHandler(loginService service.LoginService,
-	jWtService service.JWTService) LoginController {
-	return &loginController{
-		loginService: loginService,
-		jWtService:   jWtService,
-	}
-}
-
-func (controller *loginController) Login(ctx *gin.Context) string {
-	var credential dto.LoginCredentials
+func Login(ctx *gin.Context) string {
+	var credential models.User
 	err := ctx.ShouldBind(&credential)
 	if err != nil {
 		return "no correct data found in the payload"
 	}
-	isUserAuthenticated := controller.loginService.LoginUser(credential.Email, credential.Password)
+	isUserAuthenticated := service.LoginUser(credential.Email, credential.Password)
 	if isUserAuthenticated {
-		return controller.jWtService.GenerateToken(credential.Email, true)
+		return service.GenerateToken(credential.Email, true)
 
 	}
 	return ""

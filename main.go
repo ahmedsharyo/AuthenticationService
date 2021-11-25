@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 
 	Config "github.com/ahmedsharyo/AuthenticationService/config"
 	Models "github.com/ahmedsharyo/AuthenticationService/models"
+	"github.com/ahmedsharyo/AuthenticationService/router"
 
 	"github.com/jinzhu/gorm"
 
-	"github.com/ahmedsharyo/AuthenticationService/controllers"
-	"github.com/ahmedsharyo/AuthenticationService/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,33 +26,9 @@ func main() {
 
 	Config.DB.AutoMigrate(&Models.User{})
 
-	var loginService service.LoginService = service.StaticLoginService()
-	var jwtService service.JWTService = service.JWTAuthService()
-	var loginController controllers.LoginController = controllers.LoginHandler(loginService, jwtService)
-
 	server := gin.New()
 
-	server.POST("/login", func(ctx *gin.Context) {
-		token := loginController.Login(ctx)
-
-		if token != "" {
-
-			ctx.JSON(http.StatusOK, gin.H{
-				"token": token,
-			})
-
-		} else {
-			ctx.JSON(http.StatusUnauthorized, nil)
-		}
-	})
-	server.POST("/signup", func(ctx *gin.Context) {
-
-		response := controllers.SignUp(ctx)
-		ctx.JSON(http.StatusOK, gin.H{
-			"response": response,
-		})
-
-	})
+	router.Routering(server)
 
 	port := "8080"
 	server.Run(":" + port)

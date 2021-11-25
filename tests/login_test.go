@@ -1,36 +1,35 @@
 package Tests
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSignUp(t *testing.T) {
+// func TestSignUp(t *testing.T) {
 
-	client := resty.New()
+// 	client := resty.New()
 
-	// POST JSON string
-	// No need to set content type, if you have client level setting
-	resp, err := client.R().
-		SetHeader("Content-Type", "application/json").
-		SetBody(`{
-		"id" : 0,
-		"username" : "sharyo96",
-		"email": "ahmed96@sharyo.com",
-		"password": "passw33",
-		"authorityLevel" : 0
+// 	// POST JSON string
+// 	// No need to set content type, if you have client level setting
+// 	resp, err := client.R().
+// 		SetHeader("Content-Type", "application/json").
+// 		SetBody(`{
+// 		"id" : 0,
+// 		"username" : "sharyo1",
+// 		"email": "ahmed1@sharyo.com",
+// 		"password": "passw1",
+// 		"authorityLevel" : 1
 
-	}`).Post("http://localhost:8080/signup")
+// 	}`).Post("http://localhost:8080/signup")
 
-	fmt.Println("  Body       :\n", string(resp.Body()))
-	//fmt.Println("  Body       :\n", err)
-	assert.Equal(t, nil, err, err)
+// 	fmt.Println("  Body       :\n", string(resp.Body()))
+// 	//fmt.Println("  Body       :\n", err)
+// 	assert.Equal(t, nil, err, err)
 
-	assert.Equal(t, 200, resp.StatusCode(), resp.StatusCode())
-}
+// 	assert.Equal(t, 200, resp.StatusCode(), resp.StatusCode())
+// }
 
 func TestLogin(t *testing.T) {
 
@@ -41,8 +40,8 @@ func TestLogin(t *testing.T) {
 	resp, err := client.R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(`{
-		"email": "ahmed96@sharyo.com",
-		"password": "passw33"
+		"email": "ahmed@sharyo.com",
+		"password": "passw"
 	}`).Post("http://localhost:8080/login")
 
 	//fmt.Println("  Body       :\n", resp.StatusCode())
