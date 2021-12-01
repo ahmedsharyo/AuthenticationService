@@ -1,5 +1,5 @@
 # AuthenticationService
-AuthenticationService Handles login and register requests sent by system controller useing grpc connection.
+AuthenticationService Handles login and register requests sent by system controller useing GRPC connection.
 
 # References
 https://www.youtube.com/watch?v=d4Y2DkKbxM0
