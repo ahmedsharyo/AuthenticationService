@@ -1,4 +1,4 @@
-package service
+package login_grpc
 
 import (
 	"fmt"

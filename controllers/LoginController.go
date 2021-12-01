@@ -1,22 +1,22 @@
 package controllers
 
 import (
-	"github.com/ahmedsharyo/AuthenticationService/models"
-	"github.com/ahmedsharyo/AuthenticationService/service"
+	"fmt"
 
-	"github.com/gin-gonic/gin"
+	"github.com/ahmedsharyo/AuthenticationService/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
-func Login(ctx *gin.Context) string {
-	var credential models.User
-	err := ctx.ShouldBind(&credential)
-	if err != nil {
-		return "no correct data found in the payload"
-	}
-	isUserAuthenticated := service.LoginUser(credential.Email, credential.Password)
-	if isUserAuthenticated {
-		return service.GenerateToken(credential.Email, true)
+func Login(email string, password string) bool {
 
+	user := models.User{}
+	if models.GetUserByEmail(&user, email) != nil {
+		return false
 	}
-	return ""
+
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+		return false
+	}
+	fmt.Print("true")
+	return true
 }

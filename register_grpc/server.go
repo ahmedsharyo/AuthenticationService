@@ -1,4 +1,4 @@
-package service
+package authentication_grpc
 
 import (
 	"github.com/ahmedsharyo/AuthenticationService/models"

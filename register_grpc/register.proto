@@ -1,0 +1,17 @@
+syntax = "proto3";
+package pb;
+option go_package = "/pb";
+
+service Registering {
+    rpc Register (RegisterRequest) returns (RegisterResponse) {}
+  }
+
+
+  message RegisterRequest {
+    string email = 1;
+    string password = 2;
+  }
+  
+  message RegisterResponse {
+    bool isUserAuthenticated = 1;
+  }
